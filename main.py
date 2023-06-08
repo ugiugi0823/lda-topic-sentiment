@@ -54,7 +54,7 @@ def main(args):
     gc.collect()
     
     for n in range(n_topic):
-      df = pd.read_csv(f'./topic_text/topic_{n}_text.csv')
+      df = pd.read_csv(f'./topic_text/topic_{n}_text.csv',  lineterminator='\n')
       texts = df.text.tolist()
       print(str(n) + '번째 토픽 그리고 길이'+str(len(texts)))
       for text in texts:
