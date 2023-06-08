@@ -16,12 +16,15 @@ from utils import get_db, get_preproc
 
 def get_topic_text(args):
   # lad model
-  lda_model =args.lda_model
+  lda_model = args.ldaa
+  
+  db_url = args.db
   with open(lda_model, 'rb') as f:
     lda = pickle.load(f) # 단 한줄씩 읽어옴
 
-  doc, raw = get_db('url_check_6_6.db')
+  doc, raw = get_db(db_url)
   doc = get_preproc(doc)
+  print('doc 되었어유')
 
 
   # count_vec
