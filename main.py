@@ -89,7 +89,7 @@ def main(args):
     print("종료 시간 :", end_time)
 
   # 저장할 리스트
-  with open('output.pkl', 'wb') as f:
+  with open('/content/drive/MyDrive/sw/project/LDA/out/output.pkl', 'wb') as f:
     pickle.dump(lists, f)
   return lists
 
@@ -97,7 +97,7 @@ def main(args):
 if __name__ == '__main__':
 
   p = argparse.ArgumentParser()
-  p.add_argument("--lda-model", default=".", help="lda_model 경로를 넣어주세요!")
+  p.add_argument("--ldaa", default=".", help="lda_model 경로를 넣어주세요!")
   p.add_argument("--db", default=".", help="db file 경로를 넣어주세요!")
   p.add_argument("--sentiment", default="cardiffnlp/twitter-roberta-base-sentiment-latest", help="lda_model 경로를 넣어주세요!")
   p.add_argument("--n_topic", type=int , default=10, help="몇개의 토픽인지 적어주세요!")
