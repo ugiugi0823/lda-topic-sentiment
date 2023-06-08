@@ -52,12 +52,14 @@ def main(args):
 
   for box in lists:
     gc.collect()
-    i = 0
+    
     for n in range(n_topic):
       df = pd.read_csv(f'./topic_text/topic_{n}_text.csv')
       texts = df.text.tolist()
       print(str(n) + '번째 토픽 그리고 길이'+str(len(texts)))
       for text in texts:
+        start_time_2 = datetime.now()
+
         
         start_time = time.time()
         encoded_input = tokenizer(text, max_length=max_length, return_tensors='pt', padding=True, truncation=True)
@@ -78,7 +80,11 @@ def main(args):
         box.append(ss)
         if len(box) % 1000 == 0:
           print(f'{len(box)}번째 트윗 검사중~~!!')
-    i + 1
+        if len(box) % 10000 == 0:
+          end_time_2 = datetime.now()
+          execution_time = end_time_2 - start_time_2
+          print(f"실행 시간: {execution_time.total_seconds()}초")
+    
     end_time = datetime.now()
     print("종료 시간 :", end_time)
 
