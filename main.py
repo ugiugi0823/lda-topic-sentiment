@@ -34,6 +34,7 @@ def main(args):
   # PT
   model = AutoModelForSequenceClassification.from_pretrained(MODEL)
   model.save_pretrained(MODEL)
+  print('모델 로드 완료~')
 
 
   torch.cuda.empty_cache()
@@ -52,11 +53,12 @@ def main(args):
 
   for box in lists:
     gc.collect()
-    
+    print('lists',len(lists))
     for n in range(n_topic):
       df = pd.read_csv(f'./topic_text/topic_{n}_text.csv',  lineterminator='\n')
       texts = df.text.tolist()
       print(str(n) + '번째 토픽 그리고 길이'+str(len(texts)))
+      sss = []
       for text in texts:
         start_time_2 = datetime.now()
 
@@ -71,20 +73,21 @@ def main(args):
         scores = softmax(scores)
         ranking = np.argsort(scores)
         ranking = ranking[::-1]
-        ss = []
+        ss =[]
         for i in range(scores.shape[0]):
           s = scores[ranking[i]]
           s = np.round(s * 100, 2)
           ss.append(s)
           # print(s)
-        box.append(ss)
-        if len(box) % 1000 == 0:
-          print(f'{len(box)}번째 트윗 검사중~~!!')
-        if len(box) % 10000 == 0:
+        sss.append(ss)
+        if len(sss) % 1000 == 0:
+          print(f'{len(sss)}번째 트윗 검사중~~!!')
+        if len(sss) % 10000 == 0:
           end_time_2 = datetime.now()
           execution_time = end_time_2 - start_time_2
           print(f"실행 시간: {execution_time.total_seconds()}초")
-    
+    box.append(sss)
+    print('box', len(box))
     end_time = datetime.now()
     print("종료 시간 :", end_time)
 
