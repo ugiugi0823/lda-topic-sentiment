@@ -9,7 +9,7 @@ from sklearn.decomposition import LatentDirichletAllocation
 import pandas as pd
 import pickle
 import numpy as np
-from utils import get_db
+from utils import get_db, get_preproc
 
 
  
@@ -17,7 +17,7 @@ from utils import get_db
 def get_topic_text(args):
   # lad model
   lda_model =args.lda_model
-  with open('lda_6_7_total.pickle', 'rb') as f:
+  with open(lda_model, 'rb') as f:
     lda = pickle.load(f) # 단 한줄씩 읽어옴
 
   doc, raw = get_db('url_check_6_6.db')
