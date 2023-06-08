@@ -49,16 +49,18 @@ def main(args):
   
   
   
-  lists = [ [] for _ in range(n_topic) ]
+  lists = [ [] for _ in range(1) ]
 
-  for box in lists:
+  for boxx in lists:
     gc.collect()
     print('lists',len(lists))
+    box = []
     for n in range(n_topic):
       df = pd.read_csv(f'./topic_text/topic_{n}_text.csv',  lineterminator='\n')
       texts = df.text.tolist()
       print(str(n) + '번째 토픽 그리고 길이'+str(len(texts)))
       sss = []
+      print('시작 box', len(box))
       for text in texts:
         start_time_2 = datetime.now()
 
@@ -86,14 +88,14 @@ def main(args):
           end_time_2 = datetime.now()
           execution_time = end_time_2 - start_time_2
           print(f"실행 시간: {execution_time.total_seconds()}초")
-    box.append(sss)
-    print('box', len(box))
+      box.append(sss)
+      print('ㄲ끝 box', len(box))
     end_time = datetime.now()
     print("종료 시간 :", end_time)
 
   # 저장할 리스트
   with open('/content/drive/MyDrive/sw/project/LDA/out/output.pkl', 'wb') as f:
-    pickle.dump(lists, f)
+    pickle.dump(box, f)
   return lists
 
 
