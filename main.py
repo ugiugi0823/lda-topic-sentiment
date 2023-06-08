@@ -48,7 +48,7 @@ def main(args):
   
   
   
-  lists = [ [] for _ in range(10) ]
+  lists = [ [] for _ in range(n_topic) ]
 
   for box in lists:
     gc.collect()
