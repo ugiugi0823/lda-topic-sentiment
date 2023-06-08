@@ -23,8 +23,10 @@ def get_topic_text(args):
     lda = pickle.load(f) # 단 한줄씩 읽어옴
 
   doc, raw = get_db(db_url)
+  print('doc', len(doc))
   doc = get_preproc(doc)
   print('doc 되었어유')
+  
 
 
   # count_vec
