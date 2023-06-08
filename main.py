@@ -10,6 +10,7 @@ import time
 from datetime import datetime
 import gc
 import pickle
+import os
 
 from transformers import AutoModelForSequenceClassification
 from transformers import TFAutoModelForSequenceClassification
@@ -88,6 +89,7 @@ def main(args):
 
 
 if __name__ == '__main__':
+
   p = argparse.ArgumentParser()
   p.add_argument("--lda-model", default=".", help="lda_model 경로를 넣어주세요!")
   p.add_argument("--db", default=".", help="db file 경로를 넣어주세요!")
@@ -95,7 +97,7 @@ if __name__ == '__main__':
   p.add_argument("--n_topic", type=int , default=10, help="몇개의 토픽인지 적어주세요!")
 
   args = p.parse_args()
-  setup()
+  setup(args)
   get_topic_text(args)
   main(args)
 
