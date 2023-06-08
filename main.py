@@ -96,7 +96,7 @@ if __name__ == '__main__':
   args = p.parse_args()
   setup()
   get_topic_text(args)
-  main(args)
+#   main(args)
 
 
 
