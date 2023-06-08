@@ -18,7 +18,7 @@ import numpy as np
 from scipy.special import softmax
 import urllib.request
 
-
+import pandas as pd
 from lda import get_topic_text
 from utils import setup
 
@@ -26,7 +26,7 @@ from utils import setup
 
 def main(args):
   n_topic = args.n_topic
-  MODEL = args.sentiment-model
+  MODEL = args.sentiment
   tokenizer = AutoTokenizer.from_pretrained(MODEL)
 
 
@@ -90,13 +90,14 @@ def main(args):
 if __name__ == '__main__':
   p = argparse.ArgumentParser()
   p.add_argument("--lda-model", default=".", help="lda_model 경로를 넣어주세요!")
-  p.add_argument("--sentiment-model", default="cardiffnlp/twitter-roberta-base-sentiment-latest", help="lda_model 경로를 넣어주세요!")
+  p.add_argument("--db", default=".", help="db file 경로를 넣어주세요!")
+  p.add_argument("--sentiment", default="cardiffnlp/twitter-roberta-base-sentiment-latest", help="lda_model 경로를 넣어주세요!")
   p.add_argument("--n_topic", type=int , default=10, help="몇개의 토픽인지 적어주세요!")
 
   args = p.parse_args()
   setup()
   get_topic_text(args)
-#   main(args)
+  main(args)
 
 
 
