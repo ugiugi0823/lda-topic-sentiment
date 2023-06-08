@@ -28,6 +28,14 @@ def get_db(text):
 
 
 
-def setup():
+def setup(args):
+  model_name = args.sentiment
+  folder_name = model_name.split('/')[1]
   os.makedirs("topic_text", exist_ok=True)
+  if os.path.exists(folder_name):
+    # 폴더 삭제
+    os.rmdir(folder_name)
+    print("폴더 삭제 완료")
+  else:
+    print("해당 폴더가 존재하지 않습니다.")
 
