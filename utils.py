@@ -8,6 +8,7 @@ import os
 import pandas as pd
 import sqlite3
 import shutil
+from preproc import replaceURL, removeAtUser, removeHashtagInFrontOfWord
 
 def get_db(text):
   # SQLite3 연결
@@ -23,7 +24,7 @@ def get_db(text):
   drop = len(raw) - len(raw.dropna())
   print('중복 개수 ', drop)
   raw = raw.dropna()
-  doc = raw.preproc
+  doc = raw.rawContent.tolist()
 
   return doc, raw
 
@@ -40,4 +41,17 @@ def setup(args):
     print("폴더 삭제 완료")
   else:
     print("해당 폴더가 존재하지 않습니다.")
+
+
+
+
+preproc = []
+def get_preproc(doc):
+  for text in doc:
+    text = replaceURL(text)
+    text = removeAtUser(text)
+    text = removeHashtagInFrontOfWord(text)
+    preproc.append(text)
+
+  return pd.Series(preproc)
 
