@@ -76,7 +76,7 @@ def main(args):
           ss.append(s)
           # print(s)
         box.append(ss)
-        if len(box) % 100 == 0:
+        if len(box) % 1000 == 0:
           print(f'{len(box)}번째 트윗 검사중~~!!')
     i + 1
     end_time = datetime.now()
