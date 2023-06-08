@@ -21,6 +21,8 @@ def get_topic_text(args):
     lda = pickle.load(f) # 단 한줄씩 읽어옴
 
   doc, raw = get_db('url_check_6_6.db')
+  doc = get_preproc(doc)
+
 
   # count_vec
   count_vect = CountVectorizer(max_df=0.5, max_features=1000, min_df=2, stop_words='english', ngram_range=(1,2))
