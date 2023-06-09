@@ -15,17 +15,23 @@ from utils import get_db, get_preproc
  
 
 def get_topic_text(args):
-  # lad model
+  # args
   lda_model = args.ldaa
-  
   db_url = args.db
+
+  # numpy version check
+  required_version = "1.24.2"
+  current_version = np.__version__
+  assert current_version == required_version, f"NumPy 버전이 {required_version}이 아닙니다. 현재 버전: {current_version}"
+
+  # lad model 
   with open(lda_model, 'rb') as f:
     lda = pickle.load(f) # 단 한줄씩 읽어옴
 
   doc, raw = get_db(db_url)
-  print('doc', len(doc))
+  print(f'lda, DB로부터 {len(doc)}개의 트윗 DataFrame 불러오기')
   doc = get_preproc(doc)
-  print('doc 되었어유')
+  print('lda, Data Preprocessing')
   
 
 
@@ -61,18 +67,18 @@ def get_topic_text(args):
 
 
   # text
-  array_v = np.array(raw.rawContent)
-  array_v = array_v.reshape(-1, 1)
+  array_v = np.array(raw[['id', 'tweetDate', 'rawContent']])
+  # array_v = array_v.reshape(-1, 1)
 
 
   com = np.concatenate((topic_v, array_v), axis=1)
   com_df = pd.DataFrame(com)
-  com_df.columns = ['topic', 'text']
+  com_df.columns = ['topic', 'id','tweetDate','text']
 
 
   df_sorted = com_df.sort_values(by='topic', ascending=True)
   # 반복문으로 파일 저장
   for i in range(10):
       df_sorted[df_sorted['topic'] == str(i)].to_csv(f'./topic_text/topic_{i}_text.csv', index=False)
-  return print('토빅별 문장 나누기 후 저장 완료')
+  return print('lda, 토픽별 문장 분류 및 저장 완료')
 
