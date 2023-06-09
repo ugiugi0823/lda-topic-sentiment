@@ -36,7 +36,7 @@ def main(args):
   tokenizer = AutoTokenizer.from_pretrained(MODEL)
   model = AutoModelForSequenceClassification.from_pretrained(MODEL)
   model.save_pretrained(MODEL)
-  print('main, {MODEL} 모델 로드 완료~')
+  print(f'main, {MODEL} 모델 로드 완료~')
 
   # cuda empty
   torch.cuda.empty_cache()
