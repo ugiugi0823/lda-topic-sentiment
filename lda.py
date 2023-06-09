@@ -18,6 +18,7 @@ def get_topic_text(args):
   # args
   lda_model = args.ldaa
   db_url = args.db
+  topic_text_dir = args.topic_text_dir
 
   # numpy version check
   required_version = "1.24.2"
@@ -79,6 +80,6 @@ def get_topic_text(args):
   df_sorted = com_df.sort_values(by='topic', ascending=True)
   # 반복문으로 파일 저장
   for i in range(10):
-      df_sorted[df_sorted['topic'] == str(i)].to_csv(f'./topic_text/topic_{i}_text.csv', index=False)
+      df_sorted[df_sorted['topic'] == str(i)].to_csv(f'{topic_text_dir}/topic_{i}_text.csv', index=False)
   return print('lda, 토픽별 문장 분류 및 저장 완료')
 
