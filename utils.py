@@ -22,7 +22,7 @@ def get_db(text):
   conn.close()
   raw = ex[['id', 'tweetDate', 'rawContent', 'preproc']]
   drop = len(raw) - len(raw.dropna())
-  print('중복 개수 ', drop)
+  print(f'{drop}개의 중복 문서를 제거 했습니다.')
   raw = raw.dropna()
   doc = raw.rawContent.tolist()
 
@@ -34,13 +34,16 @@ def setup(args):
   model_name = args.sentiment
   folder_name = model_name.split('/')[0]
   os.makedirs("topic_text", exist_ok=True)
+  os.makedirs("output", exist_ok=True)
+  os.makedirs("result", exist_ok=True)
+
   if os.path.exists(folder_name):
     # 폴더 삭제
     # os.rmdir(folder_name)
     shutil.rmtree(folder_name)
-    print("폴더 삭제 완료")
+    print("폴더 삭제 완료. 설치를 시작합니다.!")
   else:
-    print("해당 폴더가 존재하지 않습니다.")
+    print("해당 모델 폴더가 존재하지 않습니다. 설치를 시작합니다.!")
 
 
 
