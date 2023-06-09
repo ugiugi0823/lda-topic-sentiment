@@ -30,6 +30,8 @@ def main(args):
   n_topic = args.n_topic
   MODEL = args.sentiment
   output_dir = args.output_dir
+  topic_dir = args.topic_dir
+  topic_text_dir = args.topic_text_dir
 
 
   # tokenizer, model
@@ -56,7 +58,7 @@ def main(args):
   for n in range(n_topic):
     print(f'{len(box)} 번째 Topic Sentiment Analysis ')
     gc.collect()
-    df = pd.read_csv(f'./topic_text/topic_{n}_text.csv',  lineterminator='\n')
+    df = pd.read_csv(f'{topic_text_dir}/topic_{n}_text.csv',  lineterminator='\n')
     
 
     texts = df.text.tolist()
@@ -96,7 +98,7 @@ def main(args):
     df_v = df.values
     combined_array_2 = np.concatenate((df_v, sss_v), axis=1)
     df_Re2 = pd.DataFrame(combined_array_2)
-    df_Re2.to_csv(f'./result/topic_{n}_text.csv', index=False)    
+    df_Re2.to_csv(f'{topic_dir}/topic_{n}_text.csv', index=False)    
     print(f'{n}번째 토픽 정리 완료')
 
   end_time = datetime.now()
@@ -115,8 +117,10 @@ if __name__ == '__main__':
   p.add_argument("--db", default=".", help="db file 경로를 넣어주세요!")
   p.add_argument("--sentiment", default="cardiffnlp/twitter-roberta-base-sentiment-latest", help="lda_model 경로를 넣어주세요!")
   p.add_argument("--n_topic", type=int , default=10, help="몇개의 토픽인지 적어주세요!")
+  p.add_argument("--topic_dir", default="./lda_topic_sentiment/result", help="output 경로를 넣어주세요!")
   p.add_argument("--output_dir", default="./lda_topic_sentiment/output", help="output 경로를 넣어주세요!")
-  
+  p.add_argument("--topic_text_dir", default="./lda_topic_sentiment/topic_text", help="output 경로를 넣어주세요!")
+
   args = p.parse_args()
   setup(args)
   get_topic_text(args)
