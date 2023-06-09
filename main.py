@@ -96,7 +96,7 @@ def main(args):
     df_v = df.values
     combined_array_2 = np.concatenate((df_v, sss_v), axis=1)
     df_Re2 = pd.DataFrame(combined_array_2)
-    df_Re2.to_csv(f'./reult/topic_{n}_text.csv', index=False)    
+    df_Re2.to_csv(f'./result/topic_{n}_text.csv', index=False)    
     print(f'{n}번째 토픽 정리 완료')
 
   end_time = datetime.now()
