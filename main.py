@@ -23,6 +23,9 @@ import pandas as pd
 from lda import get_topic_text
 from utils import setup
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
 
 
 def main(args):
@@ -47,6 +50,7 @@ def main(args):
 
   max_length = 512
   device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+  print(device)
   model.to(device)
   model.eval()
   current_time = datetime.now()
@@ -64,7 +68,8 @@ def main(args):
     texts = df.text.tolist()
     print(str(n) + '번째 토픽 그리고 길이'+str(len(texts)))
     sss = []
-    
+    sig = []
+    soft = []
     start_time_2 = datetime.now()
     for text in texts:
       
@@ -73,18 +78,27 @@ def main(args):
 
       with torch.no_grad():
         output = model(**encoded_input)
+      
       scores = output[0][0].detach().cpu().numpy()
       scores = softmax(scores)
-      ranking = np.argsort(scores)
-      ranking = ranking[::-1]
-      ss =[]
-      for i in range(scores.shape[0]):
-        s = scores[ranking[i]]
-        s = np.round(s * 100, 2)
-        ss.append(s)
-        # print(s)
-      sss.append(ss)
+      
+
+      
+      # scores_sig = sigmoid(scores)
+      # sig.append(scores_sig)
+      # soft.append(scores)
+
+      # ranking = np.argsort(scores)
+      # ranking = ranking[::-1]
+      # ss =[]
+      # for i in range(scores.shape[0]):
+      #   s = scores[ranking[i]]
+      #   s = np.round(s * 100, 2)
+      #   ss.append(s)
+      #   # print(s)
+      sss.append(scores)
       if len(sss) % 1000 == 0:
+        print(scores)
         print(f'{len(sss)}번째 트윗 검사중~~!!')
  
     
@@ -96,8 +110,10 @@ def main(args):
     box.append(sss)
     sss_v = np.array(sss)
     df_v = df.values
+    
     combined_array_2 = np.concatenate((df_v, sss_v), axis=1)
     df_Re2 = pd.DataFrame(combined_array_2)
+    df_Re2.columns = ['topic', 'id', 'tweetDate', 'text', 'negative', 'neutral', 'positive']
     df_Re2.to_csv(f'{topic_dir}/topic_{n}_text.csv', index=False)    
     print(f'{n}번째 토픽 정리 완료')
 
