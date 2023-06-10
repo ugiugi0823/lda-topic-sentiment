@@ -28,7 +28,7 @@ from utils import setup, sigmoid
 
 
 
-def main(args):
+def sentiment(args):
   # args
   n_topic = args.n_topic
   MODEL = args.sentiment
