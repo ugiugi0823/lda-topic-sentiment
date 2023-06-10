@@ -5,7 +5,7 @@
 import argparse
 
 from lda import get_topic_text
-from utils import setup
+from etc.utils import setup
 from sentiment import sentiment
 from get_score import get_score
 
