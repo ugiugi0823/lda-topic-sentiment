@@ -7,7 +7,7 @@ import argparse
 from lda import get_topic_text
 from utils import setup
 from sentiment import sentiment
-
+from get_score import get_score
 
 
 
@@ -28,6 +28,8 @@ if __name__ == '__main__':
   setup(args)
   get_topic_text(args)
   sentiment(args)
+  get_score()
+  
 
 
 
