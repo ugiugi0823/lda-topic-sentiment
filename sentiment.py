@@ -33,7 +33,6 @@ def sentiment(args):
   # args
   n_topic = args.n_topic
   MODEL = args.sentiment
-  output_dir = args.output_dir
   topic_dir = args.topic_dir
   topic_text_dir = args.topic_text_dir
 
