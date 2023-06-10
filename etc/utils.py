@@ -48,7 +48,7 @@ def setup(args):
   folder_name = model_name.split('/')[0]
   
 
-  os.makedirs("topic_text", exist_ok=True)
+  os.makedirs("doc_topic", exist_ok=True)
   os.makedirs("output", exist_ok=True)
   os.makedirs("sentiment_result", exist_ok=True)
 
