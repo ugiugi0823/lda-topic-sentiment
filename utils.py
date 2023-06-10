@@ -14,12 +14,6 @@ from preproc import replaceURL, removeAtUser, removeHashtagInFrontOfWord
 
 def get_db(text):
   # db 경로 자동화
-  target_folder='file'
-  if os.path.exists(os.path.join(os.getcwd(), target_folder)):
-    print(f"현재 경로에 {target_folder} 폴더가 있습니다.")
-  else:
-    print(f"현재 경로에 {target_folder} 폴더가 없습니다.")
-
   file_list = os.listdir(os.path.join(os.getcwd(), 'file'))
   # .db 확장자를 가진 파일 이름 찾기
   db_files = [filename for filename in file_list if filename.endswith('.db')]  
@@ -29,7 +23,7 @@ def get_db(text):
 
 
   # SQLite3 연결
-  conn = sqlite3.connect(db_file)
+  conn = sqlite3.connect(f'./file/{db_file}')
 
   # 쿼리 실행 및 데이터프레임 생성
   query = 'select * from tweet where hasURL=0;'
