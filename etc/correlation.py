@@ -17,9 +17,14 @@ def get_sentiment_score(sentiment_df):
         import numpy as np
         idx = np.argsort(series)[-1]
         result = series[idx]
+        neg_idx = 0
+        neu_idx = 1
         # 부정인 경우 -값으로 바꾼다.
-        if idx == 2:
+        if idx == neg_idx:
             result = -result
+        # 중성인 경우 강성 점수를 0으로 바꾼다.
+        if idx == neu_idx:
+            result = 0
         return result
 
     sentiment_df['agg_score'] = sentiment_df.iloc[:, -3:].apply(highest, axis=1)
