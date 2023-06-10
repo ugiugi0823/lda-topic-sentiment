@@ -3,7 +3,7 @@
 
 # In[ ]:
 
-
+import os
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 import pandas as pd
@@ -16,17 +16,29 @@ from utils import get_db, get_preproc
 
 def get_topic_text(args):
   # args
-  lda_model = args.ldaa
+  lda_model = args.lda
   db_url = args.db
   topic_text_dir = args.topic_text_dir
+
+  # 모델 경로 자동화
+  target_folder='file'
+  if os.path.exists(os.path.join(os.getcwd(), target_folder)):
+    print(f"현재 경로에 {target_folder} 폴더가 있습니다.")
+  else:
+    print(f"현재 경로에 {target_folder} 폴더가 없습니다.")
+
+  # .pickle 확장자를 가진 파일 이름 찾기
+  file_list = os.listdir(os.path.join(os.getcwd(), 'file'))
+  pickle_files = [filename for filename in file_list if filename.endswith('.pickle')]
+  pickle_file = pickle_files[0]
 
   # numpy version check
   required_version = "1.24.2"
   current_version = np.__version__
-#   assert current_version == required_version, f"NumPy 버전이 {required_version}이 아닙니다. 현재 버전: {current_version}"
+  # assert current_version == required_version, f"NumPy 버전이 {required_version}이 아닙니다. 현재 버전: {current_version}"
 
   # lad model 
-  with open(lda_model, 'rb') as f:
+  with open(pickle_file, 'rb') as f:
     lda = pickle.load(f) # 단 한줄씩 읽어옴
 
   doc, raw = get_db(db_url)
