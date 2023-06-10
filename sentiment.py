@@ -104,11 +104,5 @@ def sentiment(args):
 
   end_time = datetime.now()
   print("종료 시간 :", end_time)
-
-
-
-  # 총 데이터 저장!
-  with open(f'{output_dir}/output2.pkl', 'wb') as f:
-    pickle.dump(topic_box, f)
   return print('종료 되었습니다!')
 
