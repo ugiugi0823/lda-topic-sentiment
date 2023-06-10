@@ -10,7 +10,7 @@ import sqlite3
 import shutil
 
 import numpy as np
-from etc.preproc import replaceURL, removeAtUser, removeHashtagInFrontOfWord
+from preproc import replaceURL, removeAtUser, removeHashtagInFrontOfWord
 
 def get_db(text):
   # db 경로 자동화
