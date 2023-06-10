@@ -37,8 +37,9 @@ def get_topic_text(args):
   current_version = np.__version__
   # assert current_version == required_version, f"NumPy 버전이 {required_version}이 아닙니다. 현재 버전: {current_version}"
 
+
   # lad model 
-  with open(pickle_file, 'rb') as f:
+  with open(f'./file/{pickle_file}', 'rb') as f:
     lda = pickle.load(f) # 단 한줄씩 읽어옴
 
   doc, raw = get_db(db_url)
