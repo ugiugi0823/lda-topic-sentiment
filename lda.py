@@ -9,7 +9,7 @@ from sklearn.decomposition import LatentDirichletAllocation
 import pandas as pd
 import pickle
 import numpy as np
-from utils import get_db, get_preproc
+from etc.utils import get_db, get_preproc
 
 
  
