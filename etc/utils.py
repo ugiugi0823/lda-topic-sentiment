@@ -49,7 +49,6 @@ def setup(args):
   
 
   os.makedirs("doc_topic", exist_ok=True)
-  os.makedirs("output", exist_ok=True)
   os.makedirs("sentiment_result", exist_ok=True)
 
   if os.path.exists(folder_name):
