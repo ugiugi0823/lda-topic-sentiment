@@ -22,6 +22,7 @@ import urllib.request
 import pandas as pd
 from lda import get_topic_text
 from utils import setup, sigmoid
+from correlation import get_correlation
 
 
 
@@ -99,11 +100,13 @@ def sentiment(args):
     combined_array_2 = np.concatenate((df_v, topic_v), axis=1)
     df_Re2 = pd.DataFrame(combined_array_2)
     df_Re2.columns = ['topic', 'id', 'tweetDate', 'text', 'negative', 'neutral', 'positive']
-    df_Re2.to_csv(f'{topic_dir}/topic_{n}_text.csv', index=False)    
+    df_Re2.to_csv(f'{topic_dir}/result_topic_{n}_text.csv', index=False)    
     print(f'{n}번째 토픽 정리 완료')
 
   end_time = datetime.now()
   print("종료 시간 :", end_time)
+
+
 
   # 총 데이터 저장!
   with open(f'{output_dir}/output2.pkl', 'wb') as f:
