@@ -46,7 +46,7 @@ def get_db(text):
 def setup(args):
   model_name = args.sentiment
   folder_name = model_name.split('/')[0]
-  os.makedirs("lda_model", exist_ok=True)
+  
 
   os.makedirs("topic_text", exist_ok=True)
   os.makedirs("output", exist_ok=True)
