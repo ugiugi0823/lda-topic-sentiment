@@ -21,8 +21,8 @@ import urllib.request
 
 import pandas as pd
 from lda import get_topic_text
-from utils import setup, sigmoid
-from correlation import get_correlation
+from etc.utils import setup, sigmoid
+from etc.correlation import get_correlation
 
 
 
