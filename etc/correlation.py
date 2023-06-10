@@ -32,7 +32,7 @@ def get_correlation(df, snp, x_days=1):
     import numpy as np
     from scipy import stats
     sentiment_score = get_sentiment_score(df)
-    sentiment_score = get_sentiment_score(df)
+    
     snp = snp[:len(sentiment_score)]
 
     # 일단 지금 결과는 하나의 값으로 나오는데 그래프 그리려면 위의 sentiment_score 배열 자체도 반환해야 함.
