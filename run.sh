@@ -9,5 +9,5 @@ python main.py --lda 'lda_6_9.pickle' \
   --n_topic 10 \
   --sentiment "cardiffnlp/twitter-roberta-base-sentiment-latest" \
   --output_dir './output/' \
-  --topic_text_dir './topic_text/' \
+  --topic_text_dir './doc_topic/' \
   --topic_dir './sentiment_result/' 
