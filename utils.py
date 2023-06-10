@@ -13,8 +13,23 @@ import numpy as np
 from preproc import replaceURL, removeAtUser, removeHashtagInFrontOfWord
 
 def get_db(text):
+  # db 경로 자동화
+  target_folder='file'
+  if os.path.exists(os.path.join(os.getcwd(), target_folder)):
+    print(f"현재 경로에 {target_folder} 폴더가 있습니다.")
+  else:
+    print(f"현재 경로에 {target_folder} 폴더가 없습니다.")
+
+  file_list = os.listdir(os.path.join(os.getcwd(), 'file'))
+  # .db 확장자를 가진 파일 이름 찾기
+  db_files = [filename for filename in file_list if filename.endswith('.db')]  
+  db_file = db_files[0]
+  
+
+
+
   # SQLite3 연결
-  conn = sqlite3.connect(text)
+  conn = sqlite3.connect(db_file)
 
   # 쿼리 실행 및 데이터프레임 생성
   query = 'select * from tweet where hasURL=0;'
@@ -35,6 +50,8 @@ def get_db(text):
 def setup(args):
   model_name = args.sentiment
   folder_name = model_name.split('/')[0]
+  os.makedirs("lda_model", exist_ok=True)
+
   os.makedirs("topic_text", exist_ok=True)
   os.makedirs("output", exist_ok=True)
   os.makedirs("result", exist_ok=True)
