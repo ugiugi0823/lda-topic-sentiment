@@ -8,6 +8,5 @@ python main.py --lda 'lda_6_9.pickle' \
   --db 'url_check_6_8.db' \
   --n_topic 10 \
   --sentiment "cardiffnlp/twitter-roberta-base-sentiment-latest" \
-  --output_dir './output/' \
   --topic_text_dir './doc_topic/' \
   --topic_dir './sentiment_result/' 
