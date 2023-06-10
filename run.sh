@@ -1,5 +1,4 @@
 pip install transformers
-git clone https://github.com/ugiugi0823/lda_topic_sentiment.git
 cd /content/lda_topic_sentiment
 gdown '1-nX8JfYDyZEo7fmI5SRhnBbhaPQ-dRl6&confirm=t'
 unzip lda_6_8.zip
