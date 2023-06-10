@@ -8,6 +8,8 @@ import os
 import pandas as pd
 import sqlite3
 import shutil
+
+import numpy as np
 from preproc import replaceURL, removeAtUser, removeHashtagInFrontOfWord
 
 def get_db(text):
@@ -57,4 +59,8 @@ def get_preproc(doc):
     preproc.append(text)
 
   return pd.Series(preproc)
+
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
 
