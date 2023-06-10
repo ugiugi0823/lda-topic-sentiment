@@ -1,5 +1,4 @@
 pip install transformers
-git clone https://github.com/ugiugi0823/lda_topic_sentiment.git
 cd /content/lda_topic_sentiment
 gdown '1wdTqzP202eQLirHApsybI8bIiROBU_H-&confirm=t'
 unzip pickle_db_file.zip -d ./file/
