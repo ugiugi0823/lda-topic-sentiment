@@ -9,7 +9,7 @@ snp = [4145.58, 4115.24, 4151.28, 4205.45, 4205.52, 4205.52, 4205.52, 4205.52, 4
 def get_score():
   for i in range(10):
       df = pd.read_csv(
-          './result/' + 'topic_' + str(
+          './result/' + 'result_topic_' + str(
               i) + '_text.csv', lineterminator='\n')
       print(f'{i}번쨰_______________________________________')
       print(get_correlation(df, snp))
