@@ -1,5 +1,5 @@
 pip install transformers
-cd /content/lda_topic_sentiment
+cd ./lda_topic_sentiment
 gdown '1-nX8JfYDyZEo7fmI5SRhnBbhaPQ-dRl6&confirm=t'
 unzip lda_6_8.zip
 # lda_6_7_total.pickle
