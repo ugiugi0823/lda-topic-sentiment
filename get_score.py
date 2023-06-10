@@ -1,6 +1,6 @@
 import pandas as pd
 from correlation import get_correlation
-def get_score()
+def get_score():
   for i in range(10):
       df = pd.read_csv(
           '/content/lda_topic_sentiment/dd/' + 'topic_' + str(
