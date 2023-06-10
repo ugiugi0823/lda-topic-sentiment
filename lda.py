@@ -23,7 +23,7 @@ def get_topic_text(args):
   # numpy version check
   required_version = "1.24.2"
   current_version = np.__version__
-  assert current_version == required_version, f"NumPy 버전이 {required_version}이 아닙니다. 현재 버전: {current_version}"
+#   assert current_version == required_version, f"NumPy 버전이 {required_version}이 아닙니다. 현재 버전: {current_version}"
 
   # lad model 
   with open(lda_model, 'rb') as f:
