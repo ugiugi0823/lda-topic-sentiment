@@ -45,6 +45,7 @@ def get_topic_text(args):
   doc, raw = get_db(db_url)
   print(f'lda, DB로부터 {len(doc)}개의 트윗 DataFrame 불러오기')
   doc = get_preproc(doc)
+  print('시간이 조금 걸립니다!')
   print('lda, Data Preprocessing')
   
 
