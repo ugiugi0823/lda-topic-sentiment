@@ -52,6 +52,10 @@ def sentiment(args):
   device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
   print(device)
   model.to(device)
+  # Multi-GPU로 병렬화
+  if torch.cuda.device_count() > 1:
+    model = nn.DataParallel(model)
+    
   model.eval()
   current_time = datetime.now()
   
