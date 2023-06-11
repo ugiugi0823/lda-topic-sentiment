@@ -5,6 +5,7 @@
 
 
 import torch
+import torch.nn as nn
 import argparse
 import time
 from datetime import datetime
