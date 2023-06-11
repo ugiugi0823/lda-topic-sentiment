@@ -1,3 +1,4 @@
+# 최종 날짜 2023.06.18, 반영한 DB
 pip install transformers
 cd /content/lda_topic_sentiment
 gdown '1wdTqzP202eQLirHApsybI8bIiROBU_H-&confirm=t'
