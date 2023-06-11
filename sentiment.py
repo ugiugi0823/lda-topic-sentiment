@@ -83,7 +83,7 @@ def sentiment(args):
       
 
       topic.append(scores)
-      if len(topic) % 1000 == 0:
+      if len(topic) % 10000 == 0:
         print(scores)
         print(f'{len(topic)}번째 트윗 검사중~~!!')
  
