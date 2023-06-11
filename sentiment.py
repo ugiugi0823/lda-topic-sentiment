@@ -47,16 +47,16 @@ def sentiment(args):
   # cuda empty
   torch.cuda.empty_cache()
 
-
+  if torch.cuda.device_count() > 1:
+    print('Multi-GPU로 병렬화')
+    model = nn.DataParallel(model)
 
   max_length = 512
   device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
   print(device)
   model.to(device)
   # Multi-GPU로 병렬화
-  if torch.cuda.device_count() > 1:
-    print('Multi-GPU로 병렬화')
-    model = nn.DataParallel(model)
+
     
   model.eval()
   current_time = datetime.now()
