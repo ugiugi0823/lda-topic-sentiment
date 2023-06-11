@@ -54,6 +54,7 @@ def sentiment(args):
   model.to(device)
   # Multi-GPU로 병렬화
   if torch.cuda.device_count() > 1:
+    print('Multi-GPU로 병렬화')
     model = nn.DataParallel(model)
     
   model.eval()
