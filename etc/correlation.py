@@ -33,15 +33,18 @@ def get_sentiment_score(sentiment_df):
 
 
 # 토픽 이름, 일별 감정점수 집계, 날짜
-def get_correlation(df, snp, x_days=1):
+def get_correlation(df, index, window):
     import numpy as np
     from scipy import stats
     sentiment_score = get_sentiment_score(df)
-    
-    snp = snp[:len(sentiment_score)]
+    window = window + 1
+
+    agg_date = [sentiment_score.index[i - 1] for i in range(window, len(sentiment_score) + 1)]
+    agg_score = [sentiment_score[i - window : i].mean() for i in range(window, len(sentiment_score) + 1)]
+    agg_index = [(index[i-1] - index[i-window])/index[i-window] for i in range(window, len(index) + 1)]
 
     # 일단 지금 결과는 하나의 값으로 나오는데 그래프 그리려면 위의 sentiment_score 배열 자체도 반환해야 함.
-    return sentiment_score, stats.pearsonr(sentiment_score, snp)
+    return pd.DataFrame(zip(agg_date,agg_score, agg_index), columns=['agg_date', 'agg_score', 'agg_index']), stats.pearsonr(agg_score, agg_index)
 
 
 #코랩용 코드
