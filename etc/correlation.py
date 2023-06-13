@@ -43,6 +43,8 @@ def get_correlation(df, index, window):
     agg_score = [sentiment_score[i - window : i].mean() for i in range(window, len(sentiment_score) + 1)]
     agg_index = [(index[i-1] - index[i-window])/index[i-window] for i in range(window, len(index) + 1)]
 
+    if len(agg_date) < len(agg_index):
+        agg_index = agg_index[len(agg_date)]
     # 일단 지금 결과는 하나의 값으로 나오는데 그래프 그리려면 위의 sentiment_score 배열 자체도 반환해야 함.
     return pd.DataFrame(zip(agg_date,agg_score, agg_index), columns=['agg_date', 'agg_score', 'agg_index']), stats.pearsonr(agg_score, agg_index)
 
