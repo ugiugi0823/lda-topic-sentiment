@@ -35,7 +35,7 @@ def get_db(text):
   print('총 트윗 개수 ',len(raw))
   drop = len(raw) - len(raw.dropna())
   print(f'{drop}개의 중복 문서를 제거 했습니다.')
-  raw = raw.dropna()
+  raw = raw.dropna().head(100000)
   
   doc = raw.rawContent.tolist()
 
