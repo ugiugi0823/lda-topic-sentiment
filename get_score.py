@@ -11,7 +11,7 @@ def get_score():
     print(f'window size: {window_size}')
     for i in range(10):
         df = pd.read_csv(
-            './result/' + 'result_topic_' + str(
+            './sentiment_result/' + 'result_topic_' + str(
                 i) + '_text.csv', lineterminator='\n')
         print(f'토픽: {i}_______________________________________')
         #수정된 결과: 윈도우 사이즈 별로 집계된 df와 상관계수가 토픽별로 나옴
