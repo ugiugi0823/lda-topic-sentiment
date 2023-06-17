@@ -35,11 +35,12 @@ def get_db(args):
   dbb = args.db
   ex = pd.read_csv(f'./data/{dbb}')
   raw = ex[['id', 'tweetDate', 'rawContent', 'preproc']]
-  raw = raw.dropna()
   print('총 트윗 개수 ',len(raw))
   drop = len(raw) - len(raw.dropna())
   print(f'{drop}개의 중복 문서를 제거 했습니다.')
   raw = raw.dropna()
+  missing_values = raw.isnull().sum()
+  print('결측치가 확실하게 없는지 확인, 0이면 없는 것! ',missing_values)
   
   doc = raw.rawContent.tolist()
 
