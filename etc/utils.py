@@ -12,25 +12,28 @@ import shutil
 import numpy as np
 from etc.preproc import replaceURL, removeAtUser, removeHashtagInFrontOfWord
 
-def get_db(text):
-  # db 경로 자동화
-  file_list = os.listdir(os.path.join(os.getcwd(), 'file'))
-  # .db 확장자를 가진 파일 이름 찾기
-  db_files = [filename for filename in file_list if filename.endswith('.db')]  
-  db_file = db_files[0]
+def get_db(args):
+
+  # # db 경로 자동화
+  # file_list = os.listdir(os.path.join(os.getcwd(), 'file'))
+  # # .db 확장자를 가진 파일 이름 찾기
+  # db_files = [filename for filename in file_list if filename.endswith('.db')]  
+  # db_file = db_files[0]
   
 
 
 
-  # SQLite3 연결
-  conn = sqlite3.connect(f'./file/{db_file}')
+  # # SQLite3 연결
+  # conn = sqlite3.connect(f'./file/{db_file}')
 
-  # 쿼리 실행 및 데이터프레임 생성
-  query = 'select * from tweet where hasURL=0;'
-  ex = pd.read_sql_query(query, conn)
+  # # 쿼리 실행 및 데이터프레임 생성
+  # # query = 'select * from tweet where hasURL=0;'
+  # # ex = pd.read_sql_query(query, conn)
 
-  # 연결 종료
-  conn.close()
+  # # 연결 종료
+  # conn.close()
+  dbb = args.db
+  ex = pd.read_csv(f'./data/{dbb}')
   raw = ex[['id', 'tweetDate', 'rawContent', 'preproc']]
   print('총 트윗 개수 ',len(raw))
   drop = len(raw) - len(raw.dropna())
