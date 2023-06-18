@@ -17,7 +17,7 @@ from etc.utils import get_db, get_preproc
 def get_topic_text(args):
   # args
   lda_model = args.lda
-  db_url = args.db
+  
   topic_text_dir = args.topic_text_dir
 
   # 모델 경로 자동화
@@ -42,7 +42,7 @@ def get_topic_text(args):
   with open(f'./file/{pickle_file}', 'rb') as f:
     lda = pickle.load(f) # 단 한줄씩 읽어옴
 
-  doc, raw = get_db(db_url)
+  doc, raw = get_db(args)
   print(f'lda, DB로부터 {len(doc)}개의 트윗 DataFrame 불러오기')
   doc = get_preproc(doc)
   print('시간이 조금 걸립니다!')
