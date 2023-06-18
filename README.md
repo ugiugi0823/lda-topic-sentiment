@@ -1,4 +1,4 @@
-# lda_topic_sentiment
+# lda-topic-sentiment
 
 ![image](https://github.com/ugiugi0823/lda_topic_sentiment/assets/106899647/854c25ca-e895-4f0a-b847-1fae9c8e4a2c)
 
