@@ -67,7 +67,10 @@ def sentiment(args):
   for n in range(n_topic):
     print(f'{len(topic_box)} 번째 Topic Sentiment Analysis ')
     gc.collect()
-    df = pd.read_csv(f'{topic_text_dir}/topic_{n}_text.csv',  lineterminator='\n')
+    if args.drive:
+      df = pd.read_csv(f'/content/drive/MyDrive/inisw08/lda-topic-sentiment/doc_topic/topic_{n}_text.csv',  lineterminator='\n')
+    else:
+      df = pd.read_csv(f'/content/inisw08/lda-topic-sentiment/doc_topic/topic_{n}_text.csv',  lineterminator='\n')
     
 
     texts = df.text.tolist()
