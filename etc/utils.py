@@ -34,6 +34,9 @@ def get_db(args):
   # conn.close()
   dbb = args.db
   ex = pd.read_csv(f'./data/{dbb}')
+
+  ex = ex[(ex['hasURL'] == 0.0)]
+  
   raw = ex[['id', 'tweetDate', 'rawContent', 'preproc']]
   print('총 트윗 개수 ',len(raw))
   drop = len(raw) - len(raw.dropna())
