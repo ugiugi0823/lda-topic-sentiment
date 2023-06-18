@@ -56,8 +56,22 @@ def setup(args):
   folder_name = model_name.split('/')[0]
   
 
-  os.makedirs("doc_topic", exist_ok=True)
-  os.makedirs("sentiment_result", exist_ok=True)
+  assert 'drive' in os.listdir('/content') # 당황하지 마세요! 드라이브 연결을 안해놓았어요! 코랩 드라이브 연결해주세요!
+  print('구글 Drive 환경에 폴더를 제작합니다.')
+  if args.drive:
+    os.makedirs('/content/drive/MyDrive/inisw08', exist_ok=True)
+    os.makedirs('/content/drive/MyDrive/inisw08/lda-topic-sentiment', exist_ok=True)
+    os.makedirs('/content/drive/MyDrive/inisw08/lda-topic-sentiment/sentiment_result', exist_ok=True)
+    os.makedirs('/content/drive/MyDrive/inisw08/lda-topic-sentiment/doc_topic', exist_ok=True)
+
+  
+  else:
+    print('로컬 환경에 폴더를 제작합니다.')
+    os.makedirs('/content/inisw08', exist_ok=True)
+    os.makedirs('/content/inisw08/lda-topic-sentiment', exist_ok=True)
+    os.makedirs('/content/inisw08/lda-topic-sentiment/sentiment_result', exist_ok=True)
+    os.makedirs('/content/inisw08/lda-topic-sentiment/doc_topic', exist_ok=True)
+
 
   if os.path.exists(folder_name):
     # 폴더 삭제
