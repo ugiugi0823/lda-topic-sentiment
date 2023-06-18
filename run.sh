@@ -9,10 +9,9 @@ unzip database_csv.zip -d /content/lda-topic-sentiment/data
 
 
 rm -r cardiffnlp
-python main.py \
+python main.py \ 
   --lda 'lda_6_13.pickle' \
   --db 'preproc_6_2.csv' \
   --n_topic 10 \
   --sentiment "cardiffnlp/twitter-roberta-base-sentiment-latest" \
-  --topic_text_dir './doc_topic/' \
-  --topic_dir './sentiment_result/' 
+  --drive
