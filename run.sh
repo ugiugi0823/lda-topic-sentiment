@@ -9,7 +9,7 @@ unzip database_csv.zip -d /content/lda-topic-sentiment/data
 
 
 rm -r cardiffnlp
-python main.py \ 
+python main.py \
   --lda 'lda_6_13.pickle' \
   --db 'preproc_6_2.csv' \
   --n_topic 10 \
