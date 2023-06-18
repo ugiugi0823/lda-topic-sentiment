@@ -17,8 +17,8 @@ drive.mount('/content/drive')
 
 깃 허브 레포 가져오기
 ```
-!git clone https://github.com/ugiugi0823/tweet-sa-roberta.git
-%cd tweet-sa-roberta
+!git clone https://github.com/ugiugi0823/lda-topic-sentiment.git
+%cd lda-topic-sentiment
 ```
 
 
