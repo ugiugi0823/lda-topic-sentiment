@@ -18,7 +18,7 @@ def get_topic_text(args):
   # args
   lda_model = args.lda
   
-  topic_text_dir = args.topic_text_dir
+  
 
   # 모델 경로 자동화
   target_folder='file'
@@ -94,6 +94,10 @@ def get_topic_text(args):
   df_sorted = com_df.sort_values(by='topic', ascending=True)
   # 반복문으로 파일 저장
   for i in range(10):
-      df_sorted[df_sorted['topic'] == str(i)].to_csv(f'{topic_text_dir}/topic_{i}_text.csv', index=False)
+    if args.drive:
+      df_sorted[df_sorted['topic'] == str(i)].to_csv(f'/content/drive/MyDrive/inisw08/lda-topic-sentiment/doc_topic/topic_{i}_text.csv', index=False)
+    else:
+      df_sorted[df_sorted['topic'] == str(i)].to_csv(f'/content/inisw08/lda-topic-sentiment/doc_topic/topic_{i}_text.csv', index=False)
+
   return print('lda, 토픽별 문장 분류 및 저장 완료')
 
