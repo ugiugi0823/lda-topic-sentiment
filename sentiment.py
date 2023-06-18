@@ -34,8 +34,7 @@ def sentiment(args):
   # args
   n_topic = args.n_topic
   MODEL = args.sentiment
-  topic_dir = args.topic_dir
-  topic_text_dir = args.topic_text_dir
+  
 
 
   # tokenizer, model
@@ -105,7 +104,11 @@ def sentiment(args):
     combined_array_2 = np.concatenate((df_v, topic_v), axis=1)
     df_Re2 = pd.DataFrame(combined_array_2)
     df_Re2.columns = ['topic', 'id', 'tweetDate', 'text', 'negative', 'neutral', 'positive']
-    df_Re2.to_csv(f'{topic_dir}/result_topic_{n}_text.csv', index=False)    
+
+    if args.drive:
+      df_Re2.to_csv(f'/content/drive/MyDrive/inisw08/lda-topic-sentiment/sentiment_result/result_topic_{n}_text.csv', index=False)    
+    else:
+      df_Re2.to_csv(f'/content/inisw08/lda-topic-sentiment/sentiment_result/result_topic_{n}_text.csv', index=False)    
     print(f'{n}번째 토픽 정리 완료')
 
   end_time = datetime.now()
