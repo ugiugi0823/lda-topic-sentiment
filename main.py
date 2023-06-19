@@ -26,7 +26,7 @@ if __name__ == '__main__':
   setup(args)
   get_topic_text(args)
   sentiment(args)
-  #get_score()
+  get_score(args)
 
   
 
